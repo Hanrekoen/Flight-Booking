@@ -5,7 +5,8 @@ namespace FlightTest
 {
     public class FlightSpecifications
     {
-        [Fact]
+        [Theory]
+        [InlineData]
         public void Booking_Reduces_Number_of_Seats()
         {
             var flight = new Flight(seatCapacity: 3);
@@ -14,7 +15,16 @@ namespace FlightTest
 
             flight.RemainingNumberOfSeats.Should().Be(2);
         }
+        [Fact]
+        public void Booking_Reduces_Number_of_Seats_2()
+        {
+            var flight = new Flight(seatCapacity: 6);
 
+            flight.Book("Hanre@gmail.com", 3);
+
+            flight.RemainingNumberOfSeats.Should().Be(3);
+        }
+        [Fact]
         public void Avoids_Overbooking()
         {
             //Given
@@ -25,6 +35,15 @@ namespace FlightTest
 
             //Then
             error.Should().BeOfType<OverBookingErrors>();
+        }
+
+        [Fact]
+        public void Books_flights_succesfully()
+        {
+            var flight = new Flight(seatCapacity: 3);
+            
+            var error = flight.Book("Micks@gmail.com", 1);
+            error.Should().BeNull();
         }
     }
 }
