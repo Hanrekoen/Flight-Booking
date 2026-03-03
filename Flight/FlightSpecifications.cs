@@ -9,6 +9,7 @@ namespace FlightTest
         [InlineData(3,1,2)]
         [InlineData(6,3,3)]
         [InlineData(10,6,4)]
+        [InlineData(12,8,4)]
         public void Booking_Reduces_Number_of_Seats(int seatCapacity, int numberOfseats, int remainingNumberOfSeats)
         {
             var flight = new Flight(seatCapacity: seatCapacity);
