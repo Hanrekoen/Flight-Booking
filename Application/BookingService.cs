@@ -20,12 +20,22 @@ namespace Application
         public IEnumerable<BookingRm> FindBookings(Guid flightId)
         {
             return Entities.Flights
-                .Find(flightId)
+                .Find(keyValues: flightId)
                 .BookingList
                 .Select(booking => new BookingRm(
                     booking.Email,
                     booking.NumberOfSeats
                 ));
+        }
+
+        public void CancelBooking(CancelBookingDto cancelBookingDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetRemainingNumberOfSeatsFor(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
