@@ -2,6 +2,7 @@ using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
 using Data;
+using Domain;
 
 namespace Application.Tests
 {
@@ -11,14 +12,15 @@ namespace Application.Tests
         public void Books_flights()
         {
             var entities = new Entities();
-            entities.Flights.Add(new Flight)
+            var flight = new Flight(3);
+            entities.Flights.Add(flight);
             
             var bookingService = new BookingService(entities: entities);
 
             bookingService.Book(new BookDto(
-                flightId: Guid.NewGuid(), passengerEmail: "a@b.com", numberOfSeats: 2));
+                flightId: flight.Id, passengerEmail: "a@b.com", numberOfSeats: 2));
 
-            bookingService.FindBookings().Should().ContainEquivalentOf(
+            bookingService.FindBookings(flight.Id).Should().ContainEquivalentOf(
                 new BookingRm(passengerEmail: "a@b.com", numberOfSeats: 2)
                 );
         }
@@ -30,11 +32,13 @@ namespace Application.Tests
         {
             
         }
+
         public void Book(BookDto bookDto)
         {
 
         }
-        public IEnumerable<BookingRm> FindBookings()
+
+        public IEnumerable<BookingRm> FindBookings(Guid flightId)
         {
             return new[]
             {
