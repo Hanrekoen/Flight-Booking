@@ -29,7 +29,7 @@ namespace Domain
                 return new BookingNotFoundError();
 
             RemainingNumberOfSeats += NumberOfSeats;
-            return new BookingNotFoundError();
+            return null;
         }
     }
 }
