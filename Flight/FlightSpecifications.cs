@@ -3,10 +3,10 @@ using FluentAssertions;
 
 namespace FlightTest
 {
-    public class UnitTest1
+    public class FlightSpecifications
     {
         [Fact]
-        public void Test1()
+        public void Booking_Reduces_Number_of_Seats()
         {
             var flight = new Flight(seatCapacity: 3);
 
