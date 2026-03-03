@@ -89,7 +89,7 @@ namespace FlightTest
             var flight = new Flight(3);
             flight.Book(passengerEmail: "a@b.com", NumberOfSeats: 1);
             var error = flight.CancelBooking(passengerEmail: "a@b.com", NumberOfSeats: 1);
-            error.Should().BeNull();
+            error.Should().BeNull();//if the cancellation is successful, it should return null, indicating no errors occurred.
         }
     }
 }
