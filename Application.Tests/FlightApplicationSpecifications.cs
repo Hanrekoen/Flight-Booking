@@ -27,7 +27,7 @@ namespace Application.Tests
         [InlineData("a@a.com", 2)]
         public void Books_flights(string passengerEmail, int numberOfSeats)
         {
-                        
+                                    
             var flight = new Flight(3);
 
             entities.Flights.Add(flight);
@@ -40,14 +40,13 @@ namespace Application.Tests
                 );
         }
 
-        [Fact]
-        public void Cancels_booking()
+        [Theory]
+        [InlineData(3)]
+        public void Cancels_booking(int initialCapacity)
         {
             //Given
-            
-            var flight = new Flight(3);
+            var flight = new Flight(initialCapacity);
             entities.Flights.Add(flight);
-
 
             bookingService.Book(new BookDto(flightId: flight.Id, 
                 passengerEmail: "m@m.com",
@@ -59,7 +58,7 @@ namespace Application.Tests
                     numberOfSeats: 2)
                 );
             //then
-            bookingService.GetRemainingNumberOfSeatsFor(flight.Id).Should().Be(3);
+            bookingService.GetRemainingNumberOfSeatsFor(flight.Id).Should().Be(initialCapacity);
         }
     }
 
