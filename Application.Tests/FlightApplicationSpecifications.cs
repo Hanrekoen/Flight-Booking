@@ -1,6 +1,7 @@
 using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
+using Data;
 
 namespace Application.Tests
 {
@@ -11,7 +12,7 @@ namespace Application.Tests
         {
             var entities = new Entities();
             
-            var bookingService = new BookingService();
+            var bookingService = new BookingService(entities: entities);
 
             bookingService.Book(new BookDto(
                 flightId: Guid.NewGuid(), passengerEmail: "a@b.com", numberOfSeats: 2));
@@ -24,6 +25,10 @@ namespace Application.Tests
 
     public class BookingService
     {
+        public BookingService(Entities entities)
+        {
+            
+        }
         public void Book(BookDto bookDto)
         {
 
