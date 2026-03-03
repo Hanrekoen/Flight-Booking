@@ -1,4 +1,4 @@
-using Domain.Tests;
+using Domain;
 using FluentAssertions;
 
 namespace FlightTest
