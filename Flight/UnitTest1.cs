@@ -1,4 +1,7 @@
-namespace Flight
+using Domain.Tests;
+using FluentAssertions;
+
+namespace FlightTest
 {
     public class UnitTest1
     {
@@ -7,7 +10,7 @@ namespace Flight
         {
             var flight = new Flight(seatCapacity: 3);
 
-            flight.book("Hanre@gmail.com", 1);
+            flight.Book("Hanre@gmail.com", 1);
 
             flight.RemainingNumberOfSeats.Should().Be(2);
         }
