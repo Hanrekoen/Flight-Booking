@@ -11,6 +11,7 @@ namespace Application.Tests
         public void Books_flights()
         {
             var entities = new Entities();
+            entities.Flights.Add(new Flight)
             
             var bookingService = new BookingService(entities: entities);
 

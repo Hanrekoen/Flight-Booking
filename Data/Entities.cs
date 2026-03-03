@@ -1,6 +1,6 @@
 ﻿namespace Data
 {
-    public class Entities
+    public class Entities :DbContext
     {
 
     }
